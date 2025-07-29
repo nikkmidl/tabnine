@@ -27,7 +27,6 @@ export default class QueueController {
       }
 
       this.ctx.queueManager.enqueue(queue_name, message);
-      console.log('queued')
       res.status(200).send();
     } catch (error: any) {
       res.status(500).send(error.message);
@@ -43,7 +42,6 @@ export default class QueueController {
     }
 
     const message = await this.ctx.queueManager.waitForMessage(queue_name, timeoutMs);
-      console.log(message);
 
     if (!message) {
       return res.status(204).send();
