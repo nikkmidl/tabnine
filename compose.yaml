@@ -1,0 +1,13 @@
+services:
+  server:
+    environment:
+      - DATABASE_URI=mongodb://host.docker.internal:27017
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    volumes:
+      - type: bind
+        source: ./
+        target: /app
+    ports:
+      - "1337:1337"

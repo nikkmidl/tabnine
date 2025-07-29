@@ -1,0 +1,15 @@
+FROM node:latest
+WORKDIR /app
+COPY ./index.ts .
+COPY ./tsconfig.json .
+COPY ./package.json .
+COPY ./package-lock.json .
+COPY ./openapi.yaml .
+COPY ./types ./types
+COPY ./src ./src
+RUN npm ci
+RUN npm run build
+RUN ls -la
+EXPOSE 1337
+ENV DATABASE_URI=mongodb://host.docker.internal:27017
+CMD ["npm", "run", "start:dev"]

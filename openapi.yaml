@@ -1,0 +1,60 @@
+openapi: '3.1.0'
+info:
+  version: 1.0.0
+  title: Queue API
+paths:
+  /queues/:queue_name:
+    post:
+      operationId: postMessage
+      parameters:
+        - in: path
+          name: queue_name
+          schema:
+            type: string
+          required: true
+          description: Name of a queue to push to
+      requestBody:
+        content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Message"
+        required: true
+      responses:
+        200:
+          description: A Message object
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    get:
+      operationId: getMessage
+      parameters:
+        - in: query
+          name: timeout
+          schema:
+            type: string
+          required: false
+          description: Number in ms to timeout request after
+      responses:
+        200:
+          description: A Message object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Message"
+        204:
+          description: Timeout
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Message:
+      type: object
+    Error:
+      type: object
