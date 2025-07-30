@@ -12,7 +12,7 @@ export default class QueueManager {
   private getOrCreateQueue(queueName: string): QueueService {
     let queue = this.queues.get(queueName);
     if (!queue) {
-      queue = new QueueService(this.ctx);
+      queue = new QueueService();
       this.queues.set(queueName, queue);
     }
     return queue;

@@ -72,9 +72,9 @@ export default class QueueService {
   private backend: QueueBackend;
   consumer: Consumer;
 
-  constructor(ctx: Context) {
+  constructor() {
     this.backend = new LinkedListQueueBackend();
-    this.consumer = new Consumer(ctx);
+    this.consumer = new Consumer();
   }
 
   async deliverToConsumer(message: Record<string, any>): Promise<boolean> {

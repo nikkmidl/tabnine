@@ -1,5 +1,3 @@
-import { Context } from "types";
-
 interface MessageResolver {
   id: string;
   timestamp: number;
@@ -18,10 +16,8 @@ export default class Consumer {
   private head: ConsumerNode | null = null;
   private tail: ConsumerNode | null = null;
   private nextId = 0;
-  ctx: Context;
 
-  constructor(ctx: Context) {
-    this.ctx = ctx;
+  constructor() {
   }
 
   private generateId(): string {

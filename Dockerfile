@@ -24,4 +24,4 @@ COPY ./package.json .
 
 EXPOSE 1337
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "start"]
